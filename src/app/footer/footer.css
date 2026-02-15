@@ -1,0 +1,23 @@
+.brand {
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-size: xx-large;
+  color: gray;
+}
+.footer-text-size {
+  font-size: 0.7rem;
+}
+.f-h4 {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.product-tag{
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: 1px solid gray;
+  padding: 0.1rem 0.3rem;
+  border-radius: 22rem;
+}
