@@ -1,0 +1,8 @@
+.hero {
+  min-height: 100vh;
+  border: 1px solid red;
+  background-image: url('/hero3.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: contain;
+}
