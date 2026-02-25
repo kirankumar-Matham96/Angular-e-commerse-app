@@ -1,9 +1,9 @@
-<div class="container d-flex flex-column align-items-center w-25 border p-3">
+<!-- <div class="container d-flex flex-column align-items-center w-25 border p-3">
   <h1 class="fw-semibold mb-5">Sign In</h1>
   <form class="form-group w-50 d-flex flex-column align-items-center">
     <label for="email" class="input-label mt-2">
       Email:
-      <input type="email" id="email" class="form-control" />
+      <input type="email" id="email" class="form-control" formControlName="email" />
     </label>
     @if (signInForm.get('email')?.touched && signInForm.get('email')?.hasError('required')) {
       <span class="text-danger">*Email Required</span>
@@ -12,7 +12,7 @@
     }
     <label for="password" class="input-label mt-2">
       Password:
-      <input type="password" id="password" class="form-control" />
+      <input type="password" id="password" class="form-control" formControlName="password" />
     </label>
     @if (signInForm.get('password')?.touched && signInForm.get('password')?.hasError('required')) {
       <span class="text-danger">*Password Required</span>
@@ -27,4 +27,86 @@
     }
     <button class="btn btn-primary mt-3">Sign In</button>
   </form>
+  <a routerLink="/signup">Don't have an account?</a>
+</div> -->
+
+<div class="container vh-100 d-flex justify-content-center align-items-start">
+  <div class="card shadow p-4" style="width: 400px;">
+    <h2 class="text-center fw-semibold mb-4">Sign In</h2>
+
+    <form [formGroup]="signInForm">
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+        />
+
+        @if (
+          signInForm.get('email')?.touched &&
+          signInForm.get('email')?.hasError('required')
+        ) {
+          <div class="text-danger small mt-1">
+            Email is required
+          </div>
+        } @else if (
+          signInForm.get('email')?.touched &&
+          signInForm.get('email')?.hasError('email')
+        ) {
+          <div class="text-danger small mt-1">
+            Invalid email address
+          </div>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+        />
+
+        @if (
+          signInForm.get('password')?.touched &&
+          signInForm.get('password')?.hasError('required')
+        ) {
+          <div class="text-danger small mt-1">
+            Password is required
+          </div>
+        } @else if (
+          signInForm.get('password')?.touched &&
+          signInForm.get('password')?.hasError('minlength')
+        ) {
+          <div class="text-danger small mt-1">
+            Minimum 8 characters required
+          </div>
+        } @else if (
+          signInForm.get('password')?.touched &&
+          signInForm.get('password')?.hasError('maxlength')
+        ) {
+          <div class="text-danger small mt-1">
+            Maximum 16 characters allowed
+          </div>
+        }
+      </div>
+
+      <button class="btn btn-primary w-100">
+        Sign In
+      </button>
+
+      <div class="text-center mt-3">
+        <a routerLink="/signup" class="text-decoration-none">
+          Don't have an account?
+        </a>
+      </div>
+
+    </form>
+  </div>
 </div>

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
-  imports: [ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './signin.html',
   styleUrl: './signin.css',
 })
@@ -16,4 +17,12 @@ export class Signin {
       Validators.maxLength(16),
     ]),
   });
+
+  signIn() {
+    if (this.signInForm.invalid) return;
+
+    const userDetails = this.signInForm.value;
+    // send to backend
+    console.log(userDetails);
+  }
 }
