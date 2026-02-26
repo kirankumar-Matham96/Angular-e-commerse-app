@@ -1,1 +1,31 @@
-<p>products works!</p>
+<section class="container products w-100">
+  @defer {
+    @if (products$ | async; as products) {
+      <div class="row g-4">
+        @for (product of products; track product.id) {
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm product-card">
+              <img [src]="product.image" class="card-img-top product-img" [alt]="product.title" />
+
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">
+                  {{ product.title | truncate: 16 }}
+                </h5>
+
+                <p class="card-text grow">
+                  {{ product.description | truncate: 60 }}
+                </p>
+
+                <p>{{ product.price | currency: 'INR' : 'symbol' }}</p>
+
+                <button class="btn btn-primary mt-auto">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  } @loading {
+    <div class="text-center p-5">Loading products...</div>
+  }
+</section>

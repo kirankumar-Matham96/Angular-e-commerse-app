@@ -14,9 +14,8 @@ export class Header {
   cartItemsCount: Observable<number>;
 
   constructor(private cartStore: CartStore) {
-    this.cartItemsCount = this.cartStore.cart.pipe(
+    this.cartItemsCount = this.cartStore.cart$.pipe(
       map((items) => items.reduce((total, item) => total + item.quantity, 0)),
     );
-    console.log({ cartItemsCount: this.cartItemsCount });
   }
 }

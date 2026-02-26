@@ -8,13 +8,20 @@ export interface CartItem {
   quantity: number;
 }
 
+/**
+ * BehaviorSubject:
+ *  -> it stores the current value
+ *  -> New subscribers immediately receive latest state
+ *  -> Perfect for global state
+ */
+
 @Injectable({
   providedIn: 'root',
 })
 export class CartStore {
   // cartSubject to hold the cart state
   private cartSubject = new BehaviorSubject<CartItem[]>([]);
-  cart = this.cartSubject.asObservable();
+  cart$ = this.cartSubject.asObservable();
 
   getCartValue() {
     return this.cartSubject.getValue(); // gets the cart values
