@@ -33,7 +33,10 @@
           <div class="d-flex align-items-center justify-content-center">
             <i class="bi bi-search mx-2 fs-5"></i>
             <i class="bi bi-heart mx-2 fs-5"></i>
-            <i class="bi bi-bag-heart mx-2 fs-5"></i>
+            <div class="header-cart">
+              <i class="bi bi-bag-heart mx-2 fs-5"></i>
+              <span>{{ cartItemsCount | async }}</span>
+            </div>
             <i class="bi bi-person-circle mx-2 fs-5" routerLink="/signin"></i>
           </div>
         </div>
