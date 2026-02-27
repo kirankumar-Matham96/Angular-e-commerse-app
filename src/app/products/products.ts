@@ -5,21 +5,33 @@ import { ProductStore } from '../services/product.store';
 import { AsyncPipe } from '@angular/common';
 import { TruncatePipe } from '../customPipes/truncatePipe';
 import { CurrencyPipe } from '@angular/common';
+import { CartStore } from '../services/cart.store';
+
 @Component({
   selector: 'app-products',
+  // remove `imports` unless this is a standalone component; keep it for now since the project may rely on module declarations
   imports: [AsyncPipe, CurrencyPipe, TruncatePipe, RouterModule],
   templateUrl: './products.html',
-  styleUrl: './products.css',
+  styleUrls: ['./products.css'],
 })
 export class Products implements OnInit {
   products$!: Observable<any[]>;
 
   // dependenc injection through constructor
-  constructor(private productStore: ProductStore) {}
+  constructor(
+    private productStore: ProductStore,
+    private cartStore: CartStore,
+  ) {}
 
   // angular hook for the initial loading conditions / operations
   ngOnInit(): void {
     this.productStore.loadProducts(); // call the method to make api call
     this.products$ = this.productStore.products$; // assign the products to local variable
+  }
+
+  addToCart(item: any) {
+    // ensure the cart item matches the store interface (numeric id)
+    const cartItem = { ...item, id: Number(item.id) };
+    this.cartStore.addToCart(cartItem);
   }
 }

@@ -6,6 +6,9 @@ export interface CartItem {
   title: string;
   price: number;
   quantity: number;
+  // optional fields copied from the product
+  image?: string;
+  description?: string;
 }
 
 /**
@@ -27,7 +30,11 @@ export class CartStore {
     return this.cartSubject.getValue(); // gets the cart values
   }
 
-  addToCart(item: CartItem) {
+  // accept an object that has the core cart fields plus any extras like image/description
+  addToCart(item: Partial<CartItem> & { id: number; title: string; price: number }) {
+    // keep a debug log if you need to inspect
+    console.log('Item at cartStore: ', { item });
+
     // get all values
     const currentCart = this.getCartValue();
 
@@ -37,7 +44,8 @@ export class CartStore {
     if (existingItem) {
       existingItem.quantity += 1; // if exists, increase the quantity
     } else {
-      currentCart.push({ ...item, quantity: 1 }); // if not add quantity property with value 1
+      // spread whatever extra properties the caller passed (image/description)
+      currentCart.push({ ...item, quantity: 1 } as CartItem);
     }
 
     // update the state

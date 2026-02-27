@@ -6,13 +6,16 @@ import { Contact } from './contact/contact';
 import { NotFound } from './not-found/not-found';
 import { Signin } from './signin/signin';
 import { Signup } from './signup/signup';
+import { Cart } from './cart/cart';
 
 export const routes: Routes = [
-  { path: '', component: Home },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: Home },
   { path: 'signin', component: Signin },
   { path: 'signup', component: Signup },
   { path: 'products', component: Products },
   { path: 'about', component: About },
   { path: 'contact', component: Contact },
+  { path: 'cart', component: Cart },
   { path: '**', component: NotFound },
 ];
