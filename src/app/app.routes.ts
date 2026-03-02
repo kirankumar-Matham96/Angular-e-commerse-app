@@ -10,12 +10,37 @@ import { Cart } from './cart/cart';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: Home },
-  { path: 'signin', component: Signin },
-  { path: 'signup', component: Signup },
-  { path: 'products', component: Products },
-  { path: 'about', component: About },
-  { path: 'contact', component: Contact },
-  { path: 'cart', component: Cart },
-  { path: '**', component: NotFound },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.routes').then((route) => route.HOME_ROUTES),
+  },
+  {
+    path: 'signin',
+    loadChildren: () => import('./signin/signin.routes').then((route) => route.SIGNIN_ROUTES),
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.routes').then((route) => route.SIGNUP_ROUTES),
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./products/products.routes').then((route) => route.PRODUCTS_ROUTES),
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.routes').then((route) => route.ABOUT_ROUTES),
+  },
+  {
+    path: 'contact',
+    loadChildren: () => import('./contact/contact.routes').then((route) => route.CONTACT_ROUTES),
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.routes').then((route) => route.CART_ROUTES),
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./not-found/not-found.routes').then((component) => component.NOTFOUND_ROUTES),
+  },
 ];
