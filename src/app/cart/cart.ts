@@ -11,13 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cart.css'],
 })
 export class Cart implements OnInit {
-  constructor(private cartService: CartStore) {}
-
   cart$!: Observable<CartItem[]>;
-
   cartProducts$: CartItem[] = [];
-
   cartTotal: number = 0;
+
+  constructor(private cartService: CartStore) {}
 
   ngOnInit(): void {
     this.cart$ = this.cartService.cart$;
@@ -30,7 +28,6 @@ export class Cart implements OnInit {
       });
     });
 
-    // calculating total
     this.getCartTotal();
   }
 
@@ -40,6 +37,7 @@ export class Cart implements OnInit {
 
   getCartTotal(): void {
     this.cartTotal = this.cartProducts$.reduce((sum, p) => sum + p.price * p.quantity, 0);
+    this.cartTotal = parseInt(this.cartTotal.toFixed(2));
   }
 
   increaseQuantity(id: number) {
@@ -47,6 +45,7 @@ export class Cart implements OnInit {
       if (p.id === id) p.quantity = p.quantity + 1;
       return p;
     });
+    this.getCartTotal();
   }
 
   decreaseQuantity(id: number) {
@@ -54,5 +53,11 @@ export class Cart implements OnInit {
       if (p.id === id && p.quantity > 0) p.quantity = p.quantity - 1;
       return p;
     });
+    this.getCartTotal();
+  }
+
+  checkout() {
+    console.log('checked out ...');
+    // this.router.navigate(['/checkout'])
   }
 }
