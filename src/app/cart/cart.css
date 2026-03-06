@@ -1,4 +1,4 @@
-.product-card {
+/* .product-card {
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -14,4 +14,37 @@
   object-fit: contain;
   padding: 20px;
   background-color: #f8f9fa;
+}
+
+.cart-btn{
+  padding: 5px;
+  
+} */
+
+.cart-card {
+  border-radius: 18px;
+  transition: all 0.25s ease;
+}
+
+.cart-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.cart-img {
+  height: 180px;
+  object-fit: contain;
+}
+
+.quantity-wrapper {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 4px 10px;
+  background: #f8f9fa;
+}
+
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
 }
