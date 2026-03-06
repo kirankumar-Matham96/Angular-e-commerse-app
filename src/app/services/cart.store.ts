@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 export interface CartItem {
   id: number;
@@ -22,6 +22,10 @@ export interface CartItem {
   providedIn: 'root',
 })
 export class CartStore {
+  private cartAnimation = new Subject<void>();
+
+  cartAnimation$ = this.cartAnimation.asObservable();
+
   // cartSubject to hold the cart state
   private cartSubject = new BehaviorSubject<CartItem[]>([]);
   cart$ = this.cartSubject.asObservable();
@@ -50,6 +54,9 @@ export class CartStore {
 
     // update the state
     this.cartSubject.next([...currentCart]);
+
+    // triggering animation
+    this.cartAnimation.next();
   }
 
   removeFromCart(id: number) {
