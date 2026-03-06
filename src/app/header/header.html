@@ -30,14 +30,21 @@
               <a class="nav-link" routerLink="/contact">Contact</a>
             </li>
           </ul>
+
           <div class="d-flex align-items-center justify-content-center">
-            <i class="bi bi-search mx-2 fs-5 cursor-pointer"></i>
-            <i class="bi bi-heart mx-2 fs-5 cursor-pointer"></i>
-            <div class="header-cart cursor-pointer">
-              <i class="bi bi-bag-heart mx-2 fs-5" routerLink="/cart"></i>
-              <span>{{ cartItemsCount | async }}</span>
+            <i class="bi bi-search nav-icon"></i>
+
+            <i class="bi bi-heart nav-icon"></i>
+
+            <div class="cart-wrapper" routerLink="/cart">
+              <i class="bi bi-bag-heart nav-icon"></i>
+              @let count = cartItemsCount | async;
+              @if (count) {
+                <span class="cart-badge" [hidden]="count === 0">{{ count }}</span>
+              }
             </div>
-            <i class="bi bi-person-circle mx-2 fs-5 cursor-pointer" routerLink="/signin"></i>
+
+            <i class="bi bi-person-circle nav-icon" routerLink="/signin"></i>
           </div>
         </div>
       </div>

@@ -30,3 +30,8 @@
   position: sticky;
   top: 90px;
 }
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
