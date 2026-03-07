@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CartItem, CartStore } from '../services/cart.store';
+import { CartStore } from '../services/cart.store';
 import { CurrencyPipe } from '@angular/common';
 import { TruncatePipe } from '../customPipes/truncatePipe';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Product } from '../interfaces/Product';
 
 @Component({
   selector: 'app-cart',
@@ -12,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.css'],
 })
 export class Cart implements OnInit {
-  cart$!: Observable<CartItem[]>;
-  cartProducts$: CartItem[] = [];
+  cart$!: Observable<Product[]>;
+  cartProducts$: Product[] = [];
   cartTotal: number = 0;
 
   constructor(
@@ -40,13 +41,13 @@ export class Cart implements OnInit {
   }
 
   getCartTotal(): void {
-    this.cartTotal = this.cartProducts$.reduce((sum, p) => sum + p.price * p.quantity, 0);
+    this.cartTotal = this.cartProducts$.reduce((sum, p) => sum + p.price * p?.quantity!, 0);
     this.cartTotal = parseInt(this.cartTotal.toFixed(2));
   }
 
   increaseQuantity(id: number) {
     this.cartProducts$.map((p) => {
-      if (p.id === id) p.quantity = p.quantity + 1;
+      if (p.id === id) p.quantity = p?.quantity! + 1;
       return p;
     });
     this.getCartTotal();
@@ -54,7 +55,7 @@ export class Cart implements OnInit {
 
   decreaseQuantity(id: number) {
     this.cartProducts$.map((p) => {
-      if (p.id === id && p.quantity > 0) p.quantity = p.quantity - 1;
+      if (p.id === id && p?.quantity! > 0) p.quantity = p.quantity! - 1;
       return p;
     });
     this.getCartTotal();

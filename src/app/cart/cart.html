@@ -32,7 +32,7 @@
                         <button
                           class="btn btn-outline-danger btn-sm"
                           (click)="decreaseQuantity(product.id)"
-                          [disabled]="product.quantity <= 1"
+                          [disabled]="product?.quantity! <= 1"
                         >
                           -
                         </button>

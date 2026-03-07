@@ -11,6 +11,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OrderService } from '../services/order';
+import { Order, Status } from '../interfaces/Order';
 
 @Component({
   selector: 'app-checkout',
@@ -30,13 +32,13 @@ export class Checkout {
 
   constructor(
     private cartStore: CartStore,
-    // private orderService: Order,
+    private orderService: OrderService,
     private router: Router,
   ) {
     cartStore.cart$.subscribe((items) => {
       this.cartItems = items;
 
-      this.total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      this.total = items.reduce((sum, item) => sum + item.price * item?.quantity!, 0);
     });
   }
 
@@ -62,14 +64,17 @@ export class Checkout {
     }
 
     const options = {
-      key: 'YOUR_RAZORPAY_KEY_ID',
+      key: 'rzp_test_SNv0qe7baZLsV9',
+      // key: 'YOUR_RAZORPAY_KEY_ID',
       amount: this.total * 100, // Razorpay uses paise
       currency: 'INR',
       name: 'Orniva',
       description: 'Order Payment',
       handler: (response: any) => {
         console.log('Payment success', response);
-        this.router.navigate(['/order-success']);
+        this.saveOrder(); // saving the order details
+        this.cartStore.clearCart(); // clearing the cart
+        this.router.navigate(['/order-success']); // navigating to the order-success page
       },
       prefill: {
         name: this.addressForm.value.fullName,
@@ -83,5 +88,16 @@ export class Checkout {
 
     const rzp = new (window as any).Razorpay(options);
     rzp.open();
+  }
+
+  saveOrder() {
+    const order: Order = {
+      id: 'ORD' + Date.now(),
+      items: this.cartItems,
+      total: this.total,
+      status: Status.Pending,
+      date: new Date().toLocaleDateString(),
+    };
+    this.orderService.saveOrder(order);
   }
 }

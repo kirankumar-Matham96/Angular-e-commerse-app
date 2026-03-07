@@ -6,6 +6,7 @@ import { AsyncPipe } from '@angular/common';
 import { TruncatePipe } from '../customPipes/truncatePipe';
 import { CurrencyPipe } from '@angular/common';
 import { CartStore } from '../services/cart.store';
+import { Product } from '../interfaces/Product';
 
 @Component({
   selector: 'app-products',
@@ -15,7 +16,7 @@ import { CartStore } from '../services/cart.store';
   styleUrls: ['./products.css'],
 })
 export class Products implements OnInit {
-  products$!: Observable<any[]>;
+  products$!: Observable<Product[]>;
 
   // dependenc injection through constructor
   constructor(
@@ -32,6 +33,7 @@ export class Products implements OnInit {
   addToCart(item: any) {
     // ensure the cart item matches the store interface (numeric id)
     const cartItem = { ...item, id: Number(item.id) };
+    console.log(`cartItem: ${cartItem}`);
     this.cartStore.addToCart(cartItem);
   }
 }

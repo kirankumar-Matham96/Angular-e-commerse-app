@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <h2>My Orders</h2>
+
+  @for (order of orders; track order.id) {
+    <div class="card p-3 mb-3">
+      <h5>Order ID: {{ order.id }}</h5>
+      <p>Date: {{ order.date }}</p>
+      <p>
+        Status:
+        <span class="badge bg-warning">
+          {{ order.status }}
+        </span>
+      </p>
+      <p>Total: ₹{{ order.total }}</p>
+    </div>
+  }
+</div>

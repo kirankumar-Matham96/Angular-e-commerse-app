@@ -40,6 +40,10 @@ export const routes: Routes = [
       import('./order-success/order-success.routes').then((route) => route.ORDERSUCCESS_ROUTES),
   },
   {
+    path: 'orders',
+    loadChildren: () => import('./orders/orders.routes').then((route) => route.ORDERS_ROUTES),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./not-found/not-found.routes').then((component) => component.NOTFOUND_ROUTES),

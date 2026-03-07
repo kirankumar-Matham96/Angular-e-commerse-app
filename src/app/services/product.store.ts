@@ -1,15 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-interface Product {
-  id: string;
-  title: string;
-  description: string;
-  availability: number;
-  inStock: boolean;
-  image: string;
-}
+import { Product } from '../interfaces/Product';
 
 @Injectable({
   providedIn: 'root',

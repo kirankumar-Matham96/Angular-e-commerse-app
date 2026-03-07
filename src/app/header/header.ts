@@ -18,7 +18,10 @@ export class Header implements AfterViewInit {
 
   constructor(private cartStore: CartStore) {
     this.cartItemsCount = this.cartStore.cart$.pipe(
-      map((items) => items.reduce((total, item) => total + item.quantity, 0)),
+      map((items) => items.reduce((total, item) => total + item?.quantity!, 0)),
+    );
+    console.log(
+      `In Header Constructor -> this.cartItemsCount: ${JSON.stringify(this.cartItemsCount)}`,
     );
   }
 
