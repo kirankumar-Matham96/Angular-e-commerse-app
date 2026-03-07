@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProductStore } from '../services/product.store';
 import { AsyncPipe } from '@angular/common';
@@ -22,6 +22,7 @@ export class Products implements OnInit {
   constructor(
     private productStore: ProductStore,
     private cartStore: CartStore,
+    private router: Router,
   ) {}
 
   // angular hook for the initial loading conditions / operations
@@ -35,5 +36,9 @@ export class Products implements OnInit {
     const cartItem = { ...item, id: Number(item.id) };
     console.log(`cartItem: ${cartItem}`);
     this.cartStore.addToCart(cartItem);
+  }
+
+  openProductDetails(id: string | number) {
+    this.router.navigate(['/product', id]);
   }
 }
