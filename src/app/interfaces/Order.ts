@@ -2,7 +2,8 @@ import { Product } from './Product';
 
 export enum Status {
   Pending = 'Pending',
-  Success = 'Success',
+  Confirmed = 'Confirmed',
+  Delivered = 'Delivered',
   Cancelled = 'Cancelled',
 }
 

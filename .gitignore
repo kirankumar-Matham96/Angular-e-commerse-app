@@ -45,3 +45,5 @@ Thumbs.db
 
 # Secrets
 /.env
+/src/.env
+/src/app/.env
