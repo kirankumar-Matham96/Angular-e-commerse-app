@@ -3,6 +3,7 @@ import { CartItem, CartStore } from '../services/cart.store';
 import { CurrencyPipe } from '@angular/common';
 import { TruncatePipe } from '../customPipes/truncatePipe';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,10 @@ export class Cart implements OnInit {
   cartProducts$: CartItem[] = [];
   cartTotal: number = 0;
 
-  constructor(private cartService: CartStore) {}
+  constructor(
+    private cartService: CartStore,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.cart$ = this.cartService.cart$;
@@ -58,6 +62,6 @@ export class Cart implements OnInit {
 
   checkout() {
     console.log('checked out ...');
-    // this.router.navigate(['/checkout'])
+    this.router.navigate(['/checkout']);
   }
 }

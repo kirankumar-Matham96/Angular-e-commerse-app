@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Checkout</h2>
+
+  <div class="row">
+    <!-- Shipping Details -->
+    <div class="col-md-7">
+      <div class="card p-4 shadow-sm">
+        <h5>Shipping Address</h5>
+        <form [formGroup]="addressForm">
+          <input class="form-control mb-3" placeholder="Full Name" formControlName="fullName" />
+          <input class="form-control mb-3" placeholder="Email" formControlName="email" />
+          <input class="form-control mb-3" placeholder="Phone Number" formControlName="phone" />
+          <textarea
+            class="form-control mb-3"
+            rows="3"
+            placeholder="Address"
+            formControlName="address"
+          ></textarea>
+        </form>
+
+        <button class="btn btn-primary w-100" (click)="payNow()">Proceed to Payment</button>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="col-md-5">
+      <div class="card p-4 shadow-sm">
+        <h5>Order Summary</h5>
+
+        <div *ngFor="let item of cartItems">
+          <div class="d-flex justify-content-between">
+            <span [title]="item.title">{{ item.title | truncate: 35 }}</span>
+            <span>{{ item.price * item.quantity | currency: 'INR' : 'symbol' }}</span>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="d-flex justify-content-between fw-bold">
+          <span>Total</span>
+          <span>{{ total | currency: 'INR' : 'symbol' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

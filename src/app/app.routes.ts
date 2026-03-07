@@ -1,12 +1,4 @@
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
-import { Products } from './products/products';
-import { About } from './about/about';
-import { Contact } from './contact/contact';
-import { NotFound } from './not-found/not-found';
-import { Signin } from './signin/signin';
-import { Signup } from './signup/signup';
-import { Cart } from './cart/cart';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,6 +29,15 @@ export const routes: Routes = [
   {
     path: 'cart',
     loadChildren: () => import('./cart/cart.routes').then((route) => route.CART_ROUTES),
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./checkout/checkout.routes').then((route) => route.CHECKOUT_ROUTES),
+  },
+  {
+    path: 'order-success',
+    loadChildren: () =>
+      import('./order-success/order-success.routes').then((route) => route.ORDERSUCCESS_ROUTES),
   },
   {
     path: '**',
