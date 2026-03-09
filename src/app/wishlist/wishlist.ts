@@ -1,0 +1,40 @@
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Product } from '../interfaces/Product';
+import { WishlistStore } from '../services/wishlist.store';
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { TruncatePipe } from '../customPipes/truncatePipe';
+import { CartStore } from '../services/cart.store';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-wishlist',
+  imports: [AsyncPipe, TruncatePipe, CurrencyPipe],
+  templateUrl: './wishlist.html',
+  styleUrl: './wishlist.css',
+})
+export class Wishlist {
+  wishlist$!: Observable<Product[]>;
+
+  constructor(
+    private wishlistStore: WishlistStore,
+    private cartStore: CartStore,
+    private router: Router,
+  ) {
+    this.wishlist$ = wishlistStore.wishlist$;
+  }
+
+  remove(id: number) {
+    this.wishlistStore.removeFromWishlist(id);
+  }
+
+  getProductDetails(id: number) {
+    alert('Redirect to product page...');
+    this.router.navigate(['/product', id]);
+  }
+
+  addToCart(product: Product) {
+    alert('add product to cart...');
+    this.cartStore.addToCart(product);
+  }
+}

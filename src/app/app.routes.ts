@@ -26,6 +26,10 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'wishlist',
+    loadChildren: () => import('./wishlist/wishlist.routes').then((route) => route.WISHLIST_ROUTES),
+  },
+  {
     path: 'about',
     loadChildren: () => import('./about/about.routes').then((route) => route.ABOUT_ROUTES),
   },

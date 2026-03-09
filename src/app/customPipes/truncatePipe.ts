@@ -10,7 +10,6 @@ export class TruncatePipe implements PipeTransform {
       return '';
     }
     const truncatedString = value.substring(0, limit) + '...';
-    console.log({ shortString: truncatedString });
     return truncatedString;
   }
 }

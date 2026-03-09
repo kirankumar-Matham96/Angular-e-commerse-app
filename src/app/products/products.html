@@ -1,16 +1,63 @@
 <section class="container products w-100">
   @defer {
-    @if (products$ | async; as products) {
+    @if (filteredProducts) {
+      <!-- left -->
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <input
+            class="form-control"
+            placeholder="Search products..."
+            [(ngModel)]="searchTerm"
+            (input)="applyFilters()"
+          />
+        </div>
+
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="selectedCategory" (change)="applyFilters()">
+            @for (c of categories; track c) {
+              <option [value]="c">
+                {{ c }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="sortOption" (change)="applyFilters()">
+            <option value="">Sort By</option>
+            <option value="priceLow">Price Low → High</option>
+            <option value="priceHigh">Price High → Low</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <button class="btn btn-outline-secondary w-100" (click)="resetFilters()">Reset</button>
+        </div>
+      </div>
+      <!-- right -->
       <div class="row g-4">
-        @for (product of products; track product.id) {
+        @for (product of filteredProducts; track product.id) {
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" (click)="openProductDetails(product.id)">
             <div class="card h-100 shadow-sm product-card">
               <img [src]="product.image" class="card-img-top product-img" [alt]="product.title" />
 
               <div class="card-body d-flex flex-column">
-                <h5 class="card-title">
-                  {{ product.title | truncate: 16 }}
-                </h5>
+                <div>
+                  <h5 class="card-title">
+                    {{ product.title | truncate: 16 }}
+                  </h5>
+                  <button
+                    class="btn btn-sm"
+                    (click)="toggleWishlist(product); $event.stopPropagation()"
+                  >
+                    @if (isInWishlist(product.id)) {
+                      <span>❤️</span>
+                    }
+                    @if (!isInWishlist(product.id)) {
+                      <span>🤍</span>
+                    }
+                  </button>
+                </div>
 
                 <p class="card-text grow">
                   {{ product.description | truncate: 60 }}
