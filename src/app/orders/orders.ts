@@ -3,6 +3,7 @@ import { OrderService } from '../services/order';
 import { Order } from '../interfaces/Order';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { CartStore } from '../services/cart.store';
 
 @Component({
   selector: 'app-orders',
@@ -18,6 +19,7 @@ export class Orders implements OnInit {
   constructor(
     private orderService: OrderService,
     private router: Router,
+    private cartStore: CartStore,
   ) {}
 
   ngOnInit() {
@@ -63,5 +65,15 @@ export class Orders implements OnInit {
 
   openProduct(id: number) {
     this.router.navigate(['/product', id]);
+  }
+
+  reorderItems(order: any) {
+    order.items.forEach((item: any) => {
+      for (let i = 0; i < item.quantity; i++) {
+        this.cartStore.addToCart(item);
+      }
+    });
+
+    this.router.navigate(['/cart']);
   }
 }

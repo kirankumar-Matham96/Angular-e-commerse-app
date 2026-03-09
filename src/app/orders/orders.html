@@ -104,6 +104,13 @@
               <span>₹{{ order.total }}</span>
             </div>
           </div>
+
+          <!-- re-order -->
+          <div class="order-actions">
+            <button class="btn btn-outline-primary btn-sm" (click)="reorderItems(order)">
+              Reorder
+            </button>
+          </div>
         </div>
       }
     </div>
