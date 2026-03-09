@@ -1,10 +1,11 @@
 import { Product } from './Product';
 
 export enum Status {
-  Pending = 'Pending',
-  Confirmed = 'Confirmed',
   Delivered = 'Delivered',
   Cancelled = 'Cancelled',
+  Placed = 'Placed',
+  Packed = 'Packed',
+  Shipped = 'Shipped',
 }
 
 export interface Order {

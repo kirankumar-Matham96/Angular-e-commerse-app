@@ -95,7 +95,7 @@ export class Checkout {
       id: 'ORD' + Date.now(),
       items: [...this.cartItems],
       total: this.total,
-      status: Status.Confirmed,
+      status: Status.Placed,
       date: new Date().toLocaleDateString(),
     };
     this.orderService.saveOrder(order);
