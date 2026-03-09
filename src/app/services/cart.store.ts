@@ -31,9 +31,6 @@ export class CartStore {
 
   // accept an object that has the core cart fields plus any extras like image/description
   addToCart(item: Partial<Product> & { id: number; title: string; price: number }) {
-    // keep a debug log if you need to inspect
-    console.log('Item at cartStore: ', { item });
-
     // get all values
     const currentCart = this.getCartValue();
 

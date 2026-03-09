@@ -29,12 +29,11 @@ export class Wishlist {
   }
 
   getProductDetails(id: number) {
-    alert('Redirect to product page...');
     this.router.navigate(['/product', id]);
   }
 
   addToCart(product: Product) {
-    alert('add product to cart...');
     this.cartStore.addToCart(product);
+    this.remove(product.id);
   }
 }
