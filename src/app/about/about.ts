@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-about',
@@ -6,4 +6,21 @@ import { RouterModule } from '@angular/router';
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
-export class About {}
+export class About implements AfterViewInit {
+  ngAfterViewInit(): void {
+    const sections = document.querySelectorAll('.fade-in-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+}
