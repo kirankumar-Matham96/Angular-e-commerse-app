@@ -15,6 +15,5 @@ export class Orders implements OnInit {
 
   ngOnInit() {
     this.orders = this.orderService.getOrders();
-    console.log(`orders: ${this.orders}`);
   }
 }

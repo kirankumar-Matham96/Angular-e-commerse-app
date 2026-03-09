@@ -49,6 +49,7 @@ export class Products implements OnInit {
     const cartItem = { ...item, id: Number(item.id) };
     console.log(`cartItem: ${cartItem}`);
     this.cartStore.addToCart(cartItem);
+    this.wishlistStore.removeFromWishlist(cartItem.id);
   }
 
   openProductDetails(id: string | number) {
