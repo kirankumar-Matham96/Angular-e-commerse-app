@@ -64,7 +64,8 @@ export class Checkout {
     }
 
     const options = {
-      key: 'YOUR_RAZORPAY_KEY_ID',
+      // key: 'YOUR_RAZORPAY_KEY_ID',
+      key: 'rzp_test_SNv0qe7baZLsV9',
       amount: this.total * 100, // Razorpay uses paise
       currency: 'INR',
       name: 'Orniva',

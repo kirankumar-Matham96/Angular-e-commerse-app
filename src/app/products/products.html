@@ -18,7 +18,10 @@
 
                 <p>{{ product.price | currency: 'INR' : 'symbol' }}</p>
 
-                <button class="btn btn-primary mt-auto" (click)="addToCart(product)">
+                <button
+                  class="btn btn-primary mt-auto"
+                  (click)="addToCart(product); $event.stopImmediatePropagation()"
+                >
                   Add to Cart
                 </button>
               </div>

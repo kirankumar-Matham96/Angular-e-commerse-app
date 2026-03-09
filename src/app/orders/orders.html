@@ -21,7 +21,7 @@
       @for (item of order.items; track item.id) {
         <div class="d-flex align-items-center mb-3">
           <img [src]="item.image" width="60" height="60" style="object-fit: contain" class="me-3" />
-          <div class="flex-grow-1">
+          <div class="grow">
             <div class="fw-semibold">
               {{ item.title }}
             </div>
