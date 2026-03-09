@@ -8,7 +8,7 @@ import { Product } from '../interfaces/Product';
 })
 export class ProductStore {
   private productSubject = new BehaviorSubject<Product[]>([]);
-
+  categories$: string[] = [];
   products$ = this.productSubject.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -16,6 +16,7 @@ export class ProductStore {
   loadProducts() {
     this.http.get<Product[]>('https://fakestoreapi.com/products').subscribe((products) => {
       this.productSubject.next(products);
+      this.categories$ = ['all', ...new Set(products.map((product) => product.category))];
     });
   }
 }

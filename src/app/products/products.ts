@@ -39,9 +39,9 @@ export class Products implements OnInit {
 
     this.products$.subscribe((products) => {
       this.filteredProducts = products;
-      const cats = products.map((p) => p.category);
-      this.categories = ['all', ...new Set(cats)];
     });
+
+    this.categories = this.productStore.categories$;
   }
 
   addToCart(item: any) {
