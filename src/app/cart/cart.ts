@@ -26,9 +26,9 @@ export class Cart implements OnInit {
     this.cart$ = this.cartService.cart$;
 
     // subscribe so the view updates when the store changes
-    this.cartService.cart$.subscribe((c) => {
-      this.cartProducts$ = c;
-      c.forEach((item) => {
+    this.cartService.cart$.subscribe((cartProducts) => {
+      this.cartProducts$ = cartProducts;
+      cartProducts.forEach((item) => {
         console.log(`item: ${JSON.stringify(item)}`);
       });
     });
@@ -50,6 +50,7 @@ export class Cart implements OnInit {
       if (p.id === id) p.quantity = p?.quantity! + 1;
       return p;
     });
+    this.cartService.updateCart(this.cartProducts$);
     this.getCartTotal();
   }
 
@@ -58,6 +59,7 @@ export class Cart implements OnInit {
       if (p.id === id && p?.quantity! > 0) p.quantity = p.quantity! - 1;
       return p;
     });
+    this.cartService.updateCart(this.cartProducts$);
     this.getCartTotal();
   }
 

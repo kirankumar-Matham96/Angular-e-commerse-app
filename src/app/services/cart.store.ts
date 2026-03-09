@@ -18,15 +18,31 @@ export class CartStore {
   cartAnimation$ = this.cartAnimation.asObservable();
 
   // cartSubject to hold the cart state
-  private cartSubject = new BehaviorSubject<Product[]>([]);
+  private cartSubject = new BehaviorSubject<Product[]>(this.loadCart());
   cart$ = this.cartSubject.asObservable();
 
+  loadCart() {
+    if (typeof window !== 'undefined') {
+      const data = localStorage.getItem('cart');
+      return data ? JSON.parse(data) : [];
+    }
+    return [];
+  }
+
+  // where is it called and why?
   getCartValue() {
     // getting the cart from the local storage
     const cartData = localStorage.getItem('cart');
     const cart = cartData ? JSON.parse(cartData) : [];
 
     return cart || this.cartSubject.getValue(); // gets the cart values
+  }
+
+  // updates the localstorage cart memory
+  updateCart(cart: Product[]) {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
   }
 
   // accept an object that has the core cart fields plus any extras like image/description
@@ -48,7 +64,7 @@ export class CartStore {
     this.cartSubject.next([...currentCart]);
 
     // store to local storage
-    localStorage.setItem('cart', JSON.stringify([...currentCart]));
+    this.updateCart([...currentCart]);
 
     // triggering animation
     this.cartAnimation.next();
@@ -62,7 +78,7 @@ export class CartStore {
     this.cartSubject.next(updatedCart);
 
     // updating local storage
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    this.updateCart(updatedCart);
   }
 
   clearCart() {
