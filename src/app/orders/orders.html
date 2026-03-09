@@ -1,39 +1,53 @@
 <div class="container mt-5">
-  <h2 class="mb-4">My Orders</h2>
+  <h2 class="mb-4 fw-bold">My Orders</h2>
 
-  @for (order of orders; track order.id) {
-    <div class="card p-4 mb-4 shadow-sm">
-      <div class="d-flex justify-content-between">
+  @for (order of orders; track order.id; let i = $index) {
+    <div class="card order-card mb-4 shadow-sm">
+      <!-- ORDER HEADER -->
+      <div
+        class="card-header d-flex justify-content-between align-items-center order-header"
+        (click)="toggleOrder(i)"
+      >
         <div>
-          <h5>Order ID: {{ order.id }}</h5>
-          <p class="text-muted">Date: {{ order.date }}</p>
+          <div class="fw-semibold">Order ID: {{ order.id }}</div>
+          <div class="text-muted small">Placed on {{ order.date }}</div>
         </div>
-        <div>
+
+        <div class="d-flex align-items-center gap-3">
+          <div class="order-total">Total: ₹{{ order.total }}</div>
           <span class="badge bg-success">
             {{ order.status }}
+          </span>
+
+          <span class="arrow">
+            {{ expandedIndex === i ? '▲' : '▼' }}
           </span>
         </div>
       </div>
 
-      <hr />
+      <!-- COLLAPSIBLE BODY -->
+      @if (expandedIndex === i) {
+        <div class="card-body order-body">
+          <!-- ITEMS -->
+          @for (item of order.items; track item.id) {
+            <div class="order-item">
+              <img [src]="item.image" class="order-img" />
 
-      <!-- Order Items -->
-      @for (item of order.items; track item.id) {
-        <div class="d-flex align-items-center mb-3">
-          <img [src]="item.image" width="60" height="60" style="object-fit: contain" class="me-3" />
-          <div class="grow">
-            <div class="fw-semibold">
-              {{ item.title }}
+              <div class="order-details">
+                <div class="item-title">
+                  {{ item.title }}
+                </div>
+
+                <div class="text-muted small">Quantity: {{ item.quantity }}</div>
+              </div>
+
+              <div class="item-price">₹{{ item.price! * item.quantity! }}</div>
             </div>
-            <div class="text-muted small">Quantity: {{ item.quantity }}</div>
-          </div>
-          <div class="fw-bold">₹{{ item.price! * item.quantity! }}</div>
+          }
+          <hr />
+          <div class="order-total">Total: ₹{{ order.total }}</div>
         </div>
       }
-
-      <hr />
-
-      <div class="d-flex justify-content-end fw-bold">Total: ₹{{ order.total }}</div>
     </div>
   }
 </div>

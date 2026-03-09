@@ -1,0 +1,50 @@
+.order-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.order-header {
+  background: #fafafa;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.order-header:hover {
+  background: #f1f1f1;
+}
+
+.arrow {
+  font-size: 14px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.order-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.order-details {
+  flex: 1;
+}
+
+.item-title {
+  font-weight: 600;
+}
+
+.item-price {
+  font-weight: 600;
+}
+
+.order-total {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  font-size: 16px;
+}

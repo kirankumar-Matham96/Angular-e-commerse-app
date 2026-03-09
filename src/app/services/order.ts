@@ -20,7 +20,7 @@ export class OrderService {
 
   getOrders() {
     if (typeof window !== 'undefined') {
-      return JSON.parse(JSON.parse(localStorage.getItem('orders') || '[]'));
+      return JSON.parse(localStorage.getItem('orders') || '[]');
     }
     return this.orders;
   }

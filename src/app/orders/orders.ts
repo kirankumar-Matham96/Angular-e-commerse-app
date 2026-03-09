@@ -10,10 +10,19 @@ import { Order } from '../interfaces/Order';
 })
 export class Orders implements OnInit {
   orders: Order[] = [];
+  expandedIndex: number | null = null;
 
   constructor(private orderService: OrderService) {}
 
   ngOnInit() {
     this.orders = this.orderService.getOrders();
+  }
+
+  toggleOrder(index: number) {
+    if (this.expandedIndex === index) {
+      this.expandedIndex = null;
+    } else {
+      this.expandedIndex = index;
+    }
   }
 }
