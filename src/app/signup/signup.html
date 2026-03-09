@@ -1,56 +1,4 @@
-<!-- <div class="container d-flex flex-column align-items-center w-25 border p-3">
-  <h1 class="fw-semibold mb-5">Sign Up</h1>
-  <form class="form-group w-50 d-flex flex-column align-items-center">
-    <label for="firstName" class="input-label mt-2">
-      First Name:
-      <input type="text" id="firstName" class="form-control" />
-    </label>
-    @if (
-      signUpForm.get('firstName')?.touched && signUpForm.get('firstName')?.hasError('required')
-    ) {
-      <span class="text-danger">*First Name Required</span>
-    }
-    <label for="lastName" class="input-label mt-2">
-      Last Name:
-      <input type="text" id="lastName" class="form-control" />
-    </label>
-    @if (signUpForm.get('lastName')?.touched && signUpForm.get('lastName')?.hasError('required')) {
-      <span class="text-danger">*Last Name Required</span>
-    }
-    <label for="email" class="input-label mt-2">
-      Email:
-      <input type="email" id="email" class="form-control" />
-    </label>
-    @if (signUpForm.get('email')?.touched && signUpForm.get('email')?.hasError('required')) {
-      <span class="text-danger">*Email Required</span>
-    } @else if (signUpForm.get('email')?.touched && signUpForm.get('email')?.hasError('email')) {
-      <span class="text-danger">*Invalid Email</span>
-    }
-    <label for="password" class="input-label mt-2">
-      Password:
-      <input type="password" id="password" class="form-control" formControlName="password" />
-    </label>
-    @if (signUpForm.get('password')?.touched && signUpForm.get('password')?.hasError('required')) {
-      <span class="text-danger">*Password Required</span>
-    } @else if (
-      signUpForm.get('password')?.touched && signUpForm.get('password')?.hasError('minlength')
-    ) {
-      <span class="text-danger">*Password should be min of 8 characters</span>
-    } @else if (
-      signUpForm.get('password')?.touched && signUpForm.get('password')?.hasError('maxlength')
-    ) {
-      <span class="text-danger">*Password should be max of 16 characters</span>
-    }
-    <label for="cpassword" class="input-label mt-2">
-      Password:
-      <input type="password" id="cpassword" class="form-control" />
-    </label>
-    <button class="btn btn-primary mt-3">Sign Up</button>
-  </form>
-  <a routerLink="/signin">Have an account?</a>
-</div> -->
-
-<div class="container vh-100 d-flex justify-content-center align-items-center">
+<div class="container vh-100 d-flex justify-content-center align-items-start">
   <div class="card shadow p-4" style="width: 400px">
     <h2 class="text-center fw-semibold mb-4">Sign Up</h2>
 
@@ -112,12 +60,7 @@
       <!-- Confirm Password -->
       <div class="mb-4">
         <label for="cpassword" class="form-label">Confirm Password</label>
-        <input
-          type="password"
-          id="cpassword"
-          class="form-control"
-          formControlName="cpassword"
-        />
+        <input type="password" id="cpassword" class="form-control" formControlName="cpassword" />
       </div>
 
       <button type="submit" class="btn btn-primary w-100" (click)="signUp()">Sign Up</button>
