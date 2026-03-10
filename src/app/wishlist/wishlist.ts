@@ -30,6 +30,7 @@ export class Wishlist {
 
   getProductDetails(id: number) {
     this.router.navigate(['/product', id]);
+    window.scrollTo(0, 0);
   }
 
   addToCart(product: Product) {

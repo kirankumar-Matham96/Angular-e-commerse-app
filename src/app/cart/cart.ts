@@ -66,5 +66,6 @@ export class Cart implements OnInit {
   checkout() {
     console.log('checked out ...');
     this.router.navigate(['/checkout']);
+    window.scrollTo(0, 0);
   }
 }

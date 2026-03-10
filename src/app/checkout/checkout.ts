@@ -75,6 +75,7 @@ export class Checkout {
         this.saveOrder(); // saving the order details
         this.cartStore.clearCart(); // clearing the cart
         this.router.navigate(['/order-success']); // navigating to the order-success page
+        window.scrollTo(0, 0);
       },
       prefill: {
         name: this.addressForm.value.fullName,

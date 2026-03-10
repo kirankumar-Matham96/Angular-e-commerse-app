@@ -29,3 +29,12 @@
 .quantity-input {
   text-align: center;
 }
+
+.related-product-card {
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.related-product-card:hover {
+  transform: translateY(-5px);
+}

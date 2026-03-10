@@ -65,6 +65,7 @@ export class Orders implements OnInit {
 
   openProduct(id: number) {
     this.router.navigate(['/product', id]);
+    window.scrollTo(0, 0);
   }
 
   reorderItems(order: any) {
@@ -75,5 +76,6 @@ export class Orders implements OnInit {
     });
 
     this.router.navigate(['/cart']);
+    window.scrollTo(0, 0);
   }
 }

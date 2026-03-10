@@ -12,5 +12,6 @@ export class OrderSuccess {
 
   continueShopping() {
     this.router.navigate(['/products']);
+    window.scrollTo(0, 0);
   }
 }

@@ -54,6 +54,7 @@ export class Products implements OnInit {
 
   openProductDetails(id: string | number) {
     this.router.navigate(['/product', id]);
+    window.scrollTo(0, 0);
   }
 
   applyFilters() {
