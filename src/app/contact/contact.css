@@ -1,0 +1,15 @@
+.contact-hero {
+  background: #f8f9fa;
+  padding: 70px 0;
+}
+
+.contact-card {
+  padding: 25px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: white;
+}
+
+.contact-form {
+  padding-bottom: 80px;
+}
