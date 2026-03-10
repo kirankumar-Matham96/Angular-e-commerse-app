@@ -15,6 +15,10 @@ export const routes: Routes = [
     loadChildren: () => import('./signup/signup.routes').then((route) => route.SIGNUP_ROUTES),
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.routes').then((route) => route.PROFILE_ROUTES),
+  },
+  {
     path: 'products',
     loadChildren: () => import('./products/products.routes').then((route) => route.PRODUCTS_ROUTES),
   },

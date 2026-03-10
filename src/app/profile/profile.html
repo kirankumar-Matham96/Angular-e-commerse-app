@@ -1,0 +1,66 @@
+<div class="container mt-5 profile-page">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <div class="card profile-sidebar p-3">
+        <div class="text-center">
+          <img src="https://i.pravatar.cc/120" class="rounded-circle mb-3" width="100" />
+
+          <h5>{{ user.name }}</h5>
+          <p class="text-muted small">
+            {{ user.email }}
+          </p>
+        </div>
+
+        <hr />
+
+        <ul class="list-unstyled profile-links">
+          <li>
+            <a routerLink="/orders">My Orders</a>
+          </li>
+
+          <li>
+            <a routerLink="/wishlist">Wishlist</a>
+          </li>
+
+          <li>
+            <a routerLink="/cart">Cart</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <div class="card p-4">
+        <h4 class="mb-4">Profile Information</h4>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Name</label>
+            <input class="form-control" [(ngModel)]="user.name" />
+          </div>
+
+          <div class="col-md-6">
+            <label>Email</label>
+            <input class="form-control" [(ngModel)]="user.email" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Phone</label>
+            <input class="form-control" [(ngModel)]="user.phone" />
+          </div>
+
+          <div class="col-md-6">
+            <label>City</label>
+            <input class="form-control" [(ngModel)]="user.city" />
+          </div>
+        </div>
+
+        <button class="btn btn-primary" (click)="saveProfile()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>

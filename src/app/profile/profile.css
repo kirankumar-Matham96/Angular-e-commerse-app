@@ -1,0 +1,16 @@
+.profile-sidebar {
+  border-radius: 10px;
+}
+
+.profile-links li {
+  margin-bottom: 10px;
+}
+
+.profile-links a {
+  text-decoration: none;
+  color: #333;
+}
+
+.profile-links a:hover {
+  color: #0d6efd;
+}
