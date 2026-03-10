@@ -15,6 +15,8 @@ import { Product } from '../interfaces/Product';
 export class ProductDetails implements OnInit {
   product: any;
   relatedProducts: Product[] = [];
+  reviews: any[] = [];
+  isInCart!: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,17 +25,6 @@ export class ProductDetails implements OnInit {
     private router: Router,
   ) {}
 
-  // ngOnInit(): void {
-  //   const id = parseInt(this.route.snapshot.paramMap.get('id')!);
-  //   this.products.products$.subscribe((products) => {
-  //     this.product = products.find((p) => p.id == id);
-  //     // related products
-  //     this.relatedProducts = products.filter(
-  //       (p) => p.id != id && p.category == this.product.category,
-  //     );
-  //   });
-  // }
-
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = parseInt(params.get('id')!);
@@ -41,6 +32,12 @@ export class ProductDetails implements OnInit {
         this.setProduct(products, id);
       });
     });
+
+    this.cartStore.cart$.subscribe((products) => {
+      this.isInCart = products.some((p) => p.id == this.product.id);
+    });
+
+    this.generateReviews();
   }
 
   // helper function
@@ -63,5 +60,32 @@ export class ProductDetails implements OnInit {
   openProduct(id: number | string) {
     this.router.navigate(['/product', id]);
     window.scrollTo(0, 0);
+  }
+
+  generateReviews() {
+    const sampleReviews = [
+      {
+        name: 'Rahul',
+        rating: 5,
+        comment: 'Excellent product. Highly recommended!',
+      },
+      {
+        name: 'Priya',
+        rating: 4,
+        comment: 'Good quality and worth the price.',
+      },
+      {
+        name: 'Amit',
+        rating: 4,
+        comment: 'Works as expected. Delivery was fast.',
+      },
+      {
+        name: 'Sneha',
+        rating: 5,
+        comment: 'Amazing product. I love it!',
+      },
+    ];
+
+    this.reviews = sampleReviews.slice(0, 3);
   }
 }

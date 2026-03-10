@@ -38,3 +38,14 @@
 .related-product-card:hover {
   transform: translateY(-5px);
 }
+
+.review-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: white;
+  transition: transform 0.2s;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+}
