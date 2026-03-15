@@ -24,11 +24,11 @@ export class Wishlist {
     this.wishlist$ = wishlistStore.wishlist$;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     this.wishlistStore.removeFromWishlist(id);
   }
 
-  getProductDetails(id: number) {
+  getProductDetails(id: string) {
     this.router.navigate(['/product', id]);
     window.scrollTo(0, 0);
   }

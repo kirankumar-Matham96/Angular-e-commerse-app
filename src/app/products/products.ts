@@ -46,7 +46,7 @@ export class Products implements OnInit {
 
   addToCart(item: any) {
     // ensure the cart item matches the store interface (numeric id)
-    const cartItem = { ...item, id: Number(item.id) };
+    const cartItem = { ...item, id: item.id };
     console.log(`cartItem: ${cartItem}`);
     this.cartStore.addToCart(cartItem);
     this.wishlistStore.removeFromWishlist(cartItem.id);
@@ -100,7 +100,7 @@ export class Products implements OnInit {
     this.wishlistStore.toggleWishlist(product);
   }
 
-  isInWishlist(id: number): boolean {
+  isInWishlist(id: string): boolean {
     return this.wishlistStore.isInWishlist(id);
   }
 }

@@ -56,26 +56,9 @@
       @if (expandedIndex === i) {
         <div class="card-body order-body">
           <hr />
-          <!-- ITEMS -->
-          <!-- @for (item of order.items; track item.id) {
-            <div class="order-item">
-              <img [src]="item.image" class="order-img" />
-
-              <div class="order-details">
-                <div class="item-title">
-                  {{ item.title }}
-                </div>
-
-                <div class="text-muted small">Quantity: {{ item.quantity }}</div>
-              </div>
-
-              <div class="item-price">₹{{ item.price! * item.quantity! }}</div>
-            </div>
-          } -->
-
           @for (item of order.items; track item.id) {
             <div class="order-item-card" (click)="openProduct(item.id)">
-              <img [src]="item.image" class="item-img" />
+              <img [src]="item.imageUrl" class="item-img" />
 
               <div class="item-info">
                 <div class="item-title">

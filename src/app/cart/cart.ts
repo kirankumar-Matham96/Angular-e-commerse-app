@@ -36,7 +36,7 @@ export class Cart implements OnInit {
     this.getCartTotal();
   }
 
-  removeFromCart(id: number) {
+  removeFromCart(id: string) {
     this.cartService.removeFromCart(id);
   }
 
@@ -45,7 +45,7 @@ export class Cart implements OnInit {
     this.cartTotal = parseInt(this.cartTotal.toFixed(2));
   }
 
-  increaseQuantity(id: number) {
+  increaseQuantity(id: string) {
     this.cartProducts$.map((p) => {
       if (p.id === id) p.quantity = p?.quantity! + 1;
       return p;
@@ -54,7 +54,7 @@ export class Cart implements OnInit {
     this.getCartTotal();
   }
 
-  decreaseQuantity(id: number) {
+  decreaseQuantity(id: string) {
     this.cartProducts$.map((p) => {
       if (p.id === id && p?.quantity! > 0) p.quantity = p.quantity! - 1;
       return p;

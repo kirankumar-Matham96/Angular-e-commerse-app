@@ -1,0 +1,46 @@
+<h1>Add Product</h1>
+<form class="form-control container" [formGroup]="addProductForm">
+  <div class="mb-3">
+    <label for="id" class="form-label">Product ID: </label>
+    <input class="form-control" id="id" type="text" formControlName="id" readonly />
+  </div>
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Product Name:</label>
+    <input type="text" id="name" class="form-control" formControlName="name" />
+    <!-- @if (signInForm.get('email')?.touched && signInForm.get('email')?.hasError('required')) {
+          <div class="text-danger small mt-1">Email is required</div>
+        } @else if (
+          signInForm.get('email')?.touched && signInForm.get('email')?.hasError('email')
+        ) {
+          <div class="text-danger small mt-1">Invalid email address</div>
+        } -->
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Product Description:</label>
+    <input type="text" id="description" class="form-control" formControlName="description" />
+  </div>
+
+  <div class="mb-3">
+    <label for="imgUrl" class="form-label">Image URL:</label>
+    <input type="url" id="imgUrl" class="form-control" formControlName="imgUrl" />
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price:</label>
+    <input type="number" id="price" class="form-control" formControlName="price" />
+  </div>
+
+  <div class="mb-3">
+    <label for="category" class="form-label">Category:</label>
+    <input type="text" id="category" class="form-control" formControlName="category" />
+  </div>
+
+  <div class="mb-3">
+    <label for="stock" class="form-label">Stock:</label>
+    <input type="number" id="stock" class="form-control" formControlName="stock" />
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="submitHandle()">Add Product</button>
+</form>

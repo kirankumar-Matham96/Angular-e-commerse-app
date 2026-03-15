@@ -46,7 +46,7 @@ export class CartStore {
   }
 
   // accept an object that has the core cart fields plus any extras like image/description
-  addToCart(item: Partial<Product> & { id: number; title: string; price: number }) {
+  addToCart(item: Product) {
     // get all values
     const currentCart = this.getCartValue();
 
@@ -70,7 +70,7 @@ export class CartStore {
     this.cartAnimation.next();
   }
 
-  removeFromCart(id: number) {
+  removeFromCart(id: string) {
     // filter out the item from the cart state
     const updatedCart = this.getCartValue().filter((product: Product) => product.id != id);
 

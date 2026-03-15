@@ -27,7 +27,7 @@ export class ProductDetails implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const id = parseInt(params.get('id')!);
+      const id = params.get('id')!;
       this.products.products$.subscribe((products) => {
         this.setProduct(products, id);
       });
@@ -41,7 +41,7 @@ export class ProductDetails implements OnInit {
   }
 
   // helper function
-  setProduct(products: Product[], id: number) {
+  setProduct(products: Product[], id: string) {
     this.product = products.find((p) => p.id === id);
 
     this.relatedProducts = products
@@ -57,7 +57,7 @@ export class ProductDetails implements OnInit {
     alert('Added to wish list');
   }
 
-  openProduct(id: number | string) {
+  openProduct(id: string) {
     this.router.navigate(['/product', id]);
     window.scrollTo(0, 0);
   }

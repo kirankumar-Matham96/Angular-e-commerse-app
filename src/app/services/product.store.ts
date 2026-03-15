@@ -13,10 +13,23 @@ export class ProductStore {
 
   constructor(private http: HttpClient) {}
 
+  // get the products from the api
   loadProducts() {
-    this.http.get<Product[]>('https://fakestoreapi.com/products').subscribe((products) => {
+    this.http.get<Product[]>('http://localhost:5272/api/products').subscribe((products) => {
       this.productSubject.next(products);
       this.categories$ = ['all', ...new Set(products.map((product) => product.category))];
+    });
+  }
+
+  addProduct(product: Product) {
+    this.http.post<Product>('http://localhost:5272/api/products', product).subscribe(() => {
+      this.loadProducts();
+    });
+  }
+  
+  updateProduct(product: Product) {
+    this.http.put<Product>('http://localhost:5272/api/products', product).subscribe(() => {
+      this.loadProducts();
     });
   }
 }

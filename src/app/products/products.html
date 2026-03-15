@@ -39,7 +39,7 @@
         @for (product of filteredProducts; track product.id) {
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" (click)="openProductDetails(product.id)">
             <div class="card h-100 shadow-sm product-card">
-              <img [src]="product.image" class="card-img-top product-img" [alt]="product.title" />
+              <img [src]="product.imageUrl" class="card-img-top product-img" [alt]="product.title" />
 
               <div class="card-body d-flex flex-column">
                 <div>
