@@ -9,6 +9,7 @@ namespace ProductsAPI.Controllers
     public class ProductsController : ControllerBase
     {
         ProductsRepository prodInstance;
+
         public ProductsController(ProductsRepository prodRepo) {
             this.prodInstance = prodRepo;
         }
@@ -41,7 +42,5 @@ namespace ProductsAPI.Controllers
             this.prodInstance.DeleteRecord(id);
             return Ok();
         }
-
-
     }
 }

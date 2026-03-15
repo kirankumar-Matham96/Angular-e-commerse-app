@@ -38,8 +38,9 @@ namespace ProductsAPI.Models
                         Description = Convert.ToString(dataRow["description"]),
                         Price = Convert.ToDouble(dataRow["price"]),
                         Category = Convert.ToString(dataRow["category"]),
-                        Stock = Convert.ToInt32(dataRow["stock"])
-                    }
+                        Stock = Convert.ToInt32(dataRow["stock"]),
+                        ImageUrl = Convert.ToString(dataRow["imageUrl"])
+                }
                 );
             }
 
@@ -57,6 +58,7 @@ namespace ProductsAPI.Models
             command.Parameters.AddWithValue("@price", product.Price);
             command.Parameters.AddWithValue("@category", product.Category);
             command.Parameters.AddWithValue("@stock", product.Stock);
+            command.Parameters.AddWithValue("@img", product.ImageUrl);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -80,6 +82,7 @@ namespace ProductsAPI.Models
             command.Parameters.AddWithValue("@price", product.Price);
             command.Parameters.AddWithValue("@category", product.Category);
             command.Parameters.AddWithValue("@stock", product.Stock);
+            command.Parameters.AddWithValue("@img", product.ImageUrl);
 
             // open
             connection.Open();
