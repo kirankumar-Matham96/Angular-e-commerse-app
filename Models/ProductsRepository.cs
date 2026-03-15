@@ -32,10 +32,14 @@ namespace ProductsAPI.Models
             foreach (DataRow dataRow in dataTable.Rows)
             {
                 productsList.Add(new Products()
-                {
-                    Id = Convert.ToString(dataRow["id"]),
-                    Name = Convert.ToString(dataRow["title"]),
-                }
+                    {
+                        Id = Convert.ToString(dataRow["id"]),
+                        Name = Convert.ToString(dataRow["title"]),
+                        Description = Convert.ToString(dataRow["description"]),
+                        Price = Convert.ToDouble(dataRow["price"]),
+                        Category = Convert.ToString(dataRow["category"]),
+                        Stock = Convert.ToInt32(dataRow["stock"])
+                    }
                 );
             }
 
@@ -49,6 +53,10 @@ namespace ProductsAPI.Models
 
             command.Parameters.AddWithValue("@id", product.Id);
             command.Parameters.AddWithValue("@name", product.Name);
+            command.Parameters.AddWithValue("@description", product.Description);
+            command.Parameters.AddWithValue("@price", product.Price);
+            command.Parameters.AddWithValue("@category", product.Category);
+            command.Parameters.AddWithValue("@stock", product.Stock);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -67,7 +75,11 @@ namespace ProductsAPI.Models
 
             // set parameters
             command.Parameters.AddWithValue("@id", product.Id);
-            command.Parameters.AddWithValue("@name", product.Name);
+            command.Parameters.AddWithValue("@name", product.Name); 
+            command.Parameters.AddWithValue("@description", product.Description);
+            command.Parameters.AddWithValue("@price", product.Price);
+            command.Parameters.AddWithValue("@category", product.Category);
+            command.Parameters.AddWithValue("@stock", product.Stock);
 
             // open
             connection.Open();
