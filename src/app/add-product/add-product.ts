@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductStore } from '../services/product.store';
 import { Product } from '../interfaces/Product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -10,7 +11,10 @@ import { Product } from '../interfaces/Product';
   styleUrl: './add-product.css',
 })
 export class AddProduct {
-  constructor(private productStore: ProductStore) {}
+  constructor(
+    private productStore: ProductStore,
+    private router: Router,
+  ) {}
 
   prodId: any = Date.now() + '';
 
@@ -51,6 +55,10 @@ export class AddProduct {
       stock: formValue.stock,
     };
 
-    this.productStore.addProduct(product);
+    this.productStore.addProduct(product).subscribe(() => {
+      this.productStore.loadProducts(); // refresh the list
+      this.addProductForm.reset();
+      this.router.navigate(['/products']);
+    });
   }
 }
