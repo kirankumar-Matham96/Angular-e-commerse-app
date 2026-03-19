@@ -44,21 +44,27 @@ export class AddProduct {
   });
 
   submitHandle() {
-    const formValue = this.addProductForm.getRawValue();
-    const product: Product = {
-      id: formValue.id,
-      title: formValue.name,
-      description: formValue.description,
-      imageUrl: formValue.imgUrl,
-      price: formValue.price,
-      category: formValue.category,
-      stock: formValue.stock,
-    };
+    try {
+      const formValue = this.addProductForm.getRawValue();
+      const product: Product = {
+        id: formValue.id,
+        title: formValue.name,
+        description: formValue.description,
+        imageUrl: formValue.imgUrl,
+        price: formValue.price,
+        category: formValue.category,
+        stock: formValue.stock,
+      };
 
-    this.productStore.addProduct(product).subscribe(() => {
-      this.productStore.loadProducts(); // refresh the list
-      this.addProductForm.reset();
-      this.router.navigate(['/products']);
-    });
+      console.log('Product details: ', product);
+
+      this.productStore.addProduct(product).subscribe(() => {
+        this.productStore.loadProducts(); // refresh the list
+        this.addProductForm.reset();
+        this.router.navigate(['/products']);
+      });
+    } catch (error) {
+      console.error('Error adding product: ', error);
+    }
   }
 }

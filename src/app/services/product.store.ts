@@ -23,10 +23,11 @@ export class ProductStore {
   }
 
   addProduct(product: Product) {
+    console.log('Product data in store/service: ', product);
     return this.http.post<Product>('http://localhost:5272/api/products', product);
   }
 
   updateProduct(product: Product) {
-    this.http.put<Product>('http://localhost:5272/api/products', product);
+    return this.http.put<Product>('http://localhost:5272/api/products', product);
   }
 }

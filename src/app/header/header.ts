@@ -20,9 +20,6 @@ export class Header implements AfterViewInit {
     this.cartItemsCount = this.cartStore.cart$.pipe(
       map((items) => items.reduce((total, item) => total + item?.quantity!, 0)),
     );
-    console.log(
-      `In Header Constructor -> this.cartItemsCount: ${JSON.stringify(this.cartItemsCount)}`,
-    );
   }
 
   private destroy$ = new Subject<void>();

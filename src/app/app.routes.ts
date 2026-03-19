@@ -28,6 +28,11 @@ export const routes: Routes = [
       import('./add-product/add-product.routes').then((route) => route.ADD_PRODUCT_ROUTES),
   },
   {
+    path: 'update-product/:id',
+    loadChildren: () =>
+      import('./update-product/update-product.routes').then((route) => route.UPDATE_PRODUCT_ROUTES),
+  },
+  {
     path: 'product/:id',
     loadChildren: () =>
       import('./product-details/product-details.routes').then(

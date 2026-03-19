@@ -88,4 +88,9 @@ export class ProductDetails implements OnInit {
 
     this.reviews = sampleReviews.slice(0, 3);
   }
+
+  updateProduct(id: string) {
+    // redirect to update product page
+    this.router.navigate(['/update-product', id]);
+  }
 }
