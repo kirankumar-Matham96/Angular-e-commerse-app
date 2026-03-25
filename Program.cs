@@ -17,6 +17,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+
 builder.Services.AddSingleton<ProductsRepository>(); // register the service here
 
 var app = builder.Build();
@@ -26,6 +27,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseCors("AllowOrigins");
 
 app.UseHttpsRedirection();
 

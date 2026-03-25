@@ -1,4 +1,4 @@
-﻿//using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductsAPI.Models;
 
@@ -10,8 +10,16 @@ namespace ProductsAPI.Controllers
     {
         ProductsRepository prodInstance;
 
-        public ProductsController(ProductsRepository prodRepo) {
+        public ProductsController(ProductsRepository prodRepo)
+        {
             this.prodInstance = prodRepo;
+        }
+
+        [HttpPost("import")]
+        public async Task<IActionResult> ImportProducts()
+        {
+            await this.prodInstance.ImportProductsFromApi();
+            return Ok("Products imported successfully");
         }
 
         [HttpGet]
@@ -19,7 +27,8 @@ namespace ProductsAPI.Controllers
         {
             var products = this.prodInstance.GetProducts();
             Console.WriteLine("Products from controller class");
-            foreach (var product in products) {
+            foreach (var product in products)
+            {
                 Console.WriteLine(product);
             }
 
@@ -29,16 +38,26 @@ namespace ProductsAPI.Controllers
         [HttpPost]
         public void AddProduct(Products product)
         {
-            this.prodInstance.InsertProduct(product);
+
+            try
+            {
+                Console.WriteLine(product);
+                this.prodInstance.InsertProduct(product);
+            }
+            catch (Exception error) {
+                Console.WriteLine("error while adding product: ",error);
+            }
         }
 
         [HttpPut]
-        public void UpdateProduct(Products product) { 
+        public void UpdateProduct(Products product)
+        {
             this.prodInstance.UpdateProduct(product);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteProduct(string id) { 
+        public IActionResult DeleteProduct(string id)
+        {
             this.prodInstance.DeleteRecord(id);
             return Ok();
         }
