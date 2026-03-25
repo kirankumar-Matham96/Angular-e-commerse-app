@@ -1,0 +1,13 @@
+<div class="container-fluid mt-3 section">
+  <h3 class="mb-5 text-center">Shop by Category</h3>
+  <div class="row text-center mb-5">
+    @for (cat of categories; track cat.name) {
+        <div class="col-md-3">
+        <div class="category-card p-3 shadow">
+          <img [src]="cat.image" class="mb-3 category-card-img" />
+          <h6>{{ cat.name }}</h6>
+        </div>
+      </div>
+      }
+  </div>
+</div>

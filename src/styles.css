@@ -7,11 +7,19 @@ body {
   font-weight: 500;
   font-style: normal;
 }
-a{
+a {
   text-decoration: none;
   color: black;
 }
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
+}
+
+.section {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10rem;
 }

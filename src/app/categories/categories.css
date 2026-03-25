@@ -1,0 +1,14 @@
+.category-card {
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-card-img{
+  width: 100%;
+  border-radius: 0.5rem;
+}

@@ -52,6 +52,7 @@ export class Products implements OnInit {
     this.wishlistStore.removeFromWishlist(cartItem.id);
   }
 
+  // make it a helper function to use in multiple components
   openProductDetails(id: string | number) {
     this.router.navigate(['/product', id]);
     window.scrollTo(0, 0);

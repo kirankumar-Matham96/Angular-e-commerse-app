@@ -1,0 +1,26 @@
+<div class="container-fluid section">
+  <h3 class="mb-4 text-center">Featured Products</h3>
+
+  <div class="row">
+    @for (product of products; track product.id) {
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="product.imageUrl"
+            class="card-img-top p-3"
+            style="height: 200px; object-fit: contain"
+          />
+
+          <div class="card-body text-center">
+            <h6>{{ product.title | truncate: 30 }}</h6>
+            <p class="text-success fw-bold">₹{{ product.price }}</p>
+
+            <button class="btn btn-sm btn-primary" (click)="openProductDetails(product.id)">
+              View
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
