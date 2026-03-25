@@ -1,5 +1,4 @@
-<section class="container products w-100">
-  <button routerLink="/add-product">Add New Product</button>
+<section class="container products min-vh-100 w-100 my-5">
   @defer {
     @if (filteredProducts) {
       <!-- left -->
@@ -36,7 +35,7 @@
         </div>
       </div>
       <!-- right -->
-      <div class="row g-4">
+      <div class="row g-4 mb-3">
         @for (product of filteredProducts; track product.id) {
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" (click)="openProductDetails(product.id)">
             <div class="card h-100 shadow-sm product-card">
@@ -85,4 +84,5 @@
   } @loading {
     <div class="text-center p-5">Loading products...</div>
   }
+  <button routerLink="/add-product" class="btn btn-outline-primary fw-bold">Add New Product</button>
 </section>

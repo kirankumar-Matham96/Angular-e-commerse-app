@@ -1,39 +1,41 @@
-<h1>Update Product</h1>
-<form class="form-control container" [formGroup]="updateProductForm">
-  <div class="mb-3">
-    <label for="id" class="form-label">Product ID: </label>
-    <input class="form-control" id="id" type="text" formControlName="id" />
-  </div>
+<div class="container my-5">
+  <h1>Update Product</h1>
+  <form class="form-control container" [formGroup]="updateProductForm">
+    <div class="mb-3">
+      <label for="id" class="form-label">Product ID: </label>
+      <input class="form-control" id="id" type="text" formControlName="id" />
+    </div>
 
-  <div class="mb-3">
-    <label for="name" class="form-label">Product Name:</label>
-    <input type="text" id="name" class="form-control" formControlName="name" />
-  </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Product Name:</label>
+      <input type="text" id="name" class="form-control" formControlName="name" />
+    </div>
 
-  <div class="mb-3">
-    <label for="description" class="form-label">Product Description:</label>
-    <input type="text" id="description" class="form-control" formControlName="description" />
-  </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Product Description:</label>
+      <input type="text" id="description" class="form-control" formControlName="description" />
+    </div>
 
-  <div class="mb-3">
-    <label for="imgUrl" class="form-label">Image URL:</label>
-    <input type="url" id="imgUrl" class="form-control" formControlName="imgUrl" />
-  </div>
+    <div class="mb-3">
+      <label for="imgUrl" class="form-label">Image URL:</label>
+      <input type="url" id="imgUrl" class="form-control" formControlName="imgUrl" />
+    </div>
 
-  <div class="mb-3">
-    <label for="price" class="form-label">Price:</label>
-    <input type="number" id="price" class="form-control" formControlName="price" />
-  </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price:</label>
+      <input type="number" id="price" class="form-control" formControlName="price" />
+    </div>
 
-  <div class="mb-3">
-    <label for="category" class="form-label">Category:</label>
-    <input type="text" id="category" class="form-control" formControlName="category" />
-  </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category:</label>
+      <input type="text" id="category" class="form-control" formControlName="category" />
+    </div>
 
-  <div class="mb-3">
-    <label for="stock" class="form-label">Stock:</label>
-    <input type="number" id="stock" class="form-control" formControlName="stock" />
-  </div>
+    <div class="mb-3">
+      <label for="stock" class="form-label">Stock:</label>
+      <input type="number" id="stock" class="form-control" formControlName="stock" />
+    </div>
 
-  <button type="submit" class="btn btn-primary" (click)="submitHandle()">Update Product</button>
-</form>
+    <button type="submit" class="btn btn-primary" (click)="submitHandle()">Update Product</button>
+  </form>
+</div>
